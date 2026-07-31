@@ -920,6 +920,29 @@ const revealIO = new IntersectionObserver(entries=>{
 },{threshold:.14,rootMargin:"0px 0px -6% 0px"});
 $$(".rv").forEach(el=>revealIO.observe(el));
 
+/* Safety net: a direct #hash load (e.g. clicking "Collections" in the nav,
+   or opening a link straight to /#collections) can jump the browser to a
+   section that's already in the viewport before this script runs. Some
+   browsers don't reliably fire the IntersectionObserver's first callback
+   for elements that are already visible at observe()-time, which left
+   those sections permanently stuck at opacity:0. Force-reveal anything
+   that's already on screen right now, and anything still hidden after a
+   couple of seconds no matter what (belt-and-braces). */
+function revealIfVisible(el){
+  const r=el.getBoundingClientRect();
+  if(r.bottom>0&&r.top<innerHeight){
+    el.classList.add("in");
+    revealIO.unobserve(el);
+    return true;
+  }
+  return false;
+}
+$$(".rv").forEach(revealIfVisible);
+if(location.hash){
+  setTimeout(()=>$$(".rv").forEach(revealIfVisible),50);
+}
+setTimeout(()=>{ $$(".rv:not(.in)").forEach(el=>{ el.classList.add("in"); revealIO.unobserve(el); }); },2500);
+
 /* stat counters */
 const countIO = new IntersectionObserver(entries=>{
   entries.forEach(en=>{
