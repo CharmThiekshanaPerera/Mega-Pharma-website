@@ -635,7 +635,11 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 <!-- ============ 05 · THE COLLECTIONS ============ -->
 <section class="chapter" id="collections" data-scene="4" aria-labelledby="collections-h">
   <div class="wrap chapter-inner">
-    <div class="pane rv">
+    <!-- No scroll-reveal on this pane: it's ~9000px tall (all 129 products),
+         so a per-element IntersectionObserver reveal can never reach its
+         threshold and would leave the whole section stuck at opacity:0.
+         The catalogue is always visible. -->
+    <div class="pane">
       <div class="prod-head">
         <div>
           <p class="eyebrow"><i>05</i>The Collections</p>
