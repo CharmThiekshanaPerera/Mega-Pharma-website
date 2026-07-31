@@ -452,6 +452,9 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .foot-grid ul{list-style:none;display:grid;gap:.55rem}
 .foot-grid a{font-size:.88rem;color:#c6cfe6}
 .foot-grid .lnk:hover{color:#fff}
+.foot-logo{width:46px;height:auto;display:block;margin-bottom:1.1rem;filter:drop-shadow(0 0 0 rgba(181,18,27,0));animation:footLogoPulse 4.4s ease-in-out infinite;transition:filter .5s var(--ease),transform .5s var(--ease)}
+.foot-brand:hover .foot-logo{filter:drop-shadow(0 0 20px rgba(181,18,27,.55));transform:translateY(-2px)}
+@keyframes footLogoPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(181,18,27,0))}50%{transform:scale(1.045);filter:drop-shadow(0 0 12px rgba(181,18,27,.4))}}
 .foot-brand .brand{color:#fff}
 .foot-brand .brand span{color:#8fa0c9}
 .foot-brand p{color:#9daac9;font-size:.84rem;margin-top:1rem;max-width:36ch}
@@ -743,6 +746,7 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
+        <img class="foot-logo rv" src="https://d8j0ntlcm91z4.cloudfront.net/user_3CB7QbfiArx9VIufTgzDQat3bei/hf_20260707_064703_64d42d90-cb34-4a6d-a133-ffa9fabc2b31.png" alt="" aria-hidden="true" width="46" height="72" loading="lazy" decoding="async">
         <a class="brand" href="#top"><b>Mega Pharma</b><span>Group</span></a>
         <p>A specialised healthcare group importing, marketing and distributing quality medicine and medical technology across Sri Lanka since 1995.</p>
       </div>
