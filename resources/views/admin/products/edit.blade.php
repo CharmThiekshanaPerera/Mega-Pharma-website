@@ -5,6 +5,10 @@
 
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <p class="text-sm text-gray-500 mb-4">
+                Public URL:
+                <a href="{{ route('products.show', $product) }}" target="_blank" class="text-red-700 hover:underline">{{ route('products.show', $product) }}</a>
+            </p>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <form method="POST" action="{{ route('admin.products.update', $product) }}" class="space-y-6">
                     @csrf

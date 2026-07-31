@@ -43,7 +43,10 @@ class ProductController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        Product::create($this->validated($request));
+        $data = $this->validated($request);
+        $data['slug'] = Product::uniqueSlug($data['name']);
+
+        Product::create($data);
 
         return Redirect::route('admin.products.index')->with('status', 'Product created.');
     }

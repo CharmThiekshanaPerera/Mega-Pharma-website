@@ -5,10 +5,13 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController as PublicProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/products/{product:slug}', [PublicProductController::class, 'show'])->name('products.show');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])
     ->middleware('throttle:10,1')
