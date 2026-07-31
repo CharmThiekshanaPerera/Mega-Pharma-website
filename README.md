@@ -75,6 +75,31 @@ If you ever want MySQL back on the default port 3306, change the two
 if the `MySQL80` Windows service isn't running, since it already owns that
 port.
 
+## Production deployment
+
+Live at `http://178.128.124.43` (DigitalOcean droplet, Docker Compose — no
+domain/HTTPS yet).
+
+- **Pipeline**: every push to `main` runs `.github/workflows/deploy.yml`,
+  which builds the `app` (PHP-FPM) and `nginx` images from the root
+  `Dockerfile`, pushes them to GHCR (`ghcr.io/charmthiekshanaperera/mega-pharma-website-{app,nginx}`,
+  public), then SSHes into the droplet to `docker compose pull && up -d` and
+  run `php artisan migrate --force`. It deliberately never runs `db:seed` —
+  `ProductSeeder` truncates the `products` table, which would wipe anything
+  added via `/admin/products` in production.
+- **Droplet layout**: `/opt/mega-pharma/docker-compose.yml` (kept in sync by
+  the pipeline) + `/opt/mega-pharma/.env` (hand-written on the droplet only,
+  holds `APP_KEY`/DB credentials, never committed).
+- **Services**: `nginx` (public :80) → `app` (PHP-FPM) + `queue`
+  (`artisan queue:work`) → `db` (MySQL 8.4, internal network only, named
+  volume). `storage/` is a named volume so uploads/logs survive redeploys.
+- **CI secrets** (`gh secret list`): `DEPLOY_HOST`, `DEPLOY_USER`,
+  `DEPLOY_SSH_KEY` — the latter is a dedicated ed25519 keypair generated
+  just for Actions, appended to the droplet's `authorized_keys`; it is not
+  the same key used for interactive SSH access.
+- **Follow-up not yet done**: point a real domain at the droplet and add
+  Let's Encrypt/Certbot for HTTPS.
+
 ## Admin panel
 
 - URL: `/admin` (redirects to `/login` if not authenticated)
