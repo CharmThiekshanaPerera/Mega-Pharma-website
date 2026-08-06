@@ -7,9 +7,11 @@ use Illuminate\Database\Seeder;
 
 /**
  * One-off content update: real copy + real photos for the Yuwell Anytime CT3
- * and B.Well ranges, sourced from docs/. Upserts by name so it only ever
- * touches these ~15 rows — the rest of the 129-product catalog (and any
- * manual admin edits made to it) is left untouched. Safe to re-run.
+ * and B.Well ranges already in the catalog, sourced from docs/. Upserts by
+ * name so it only ever touches these 11 rows — the rest of the catalog (and
+ * any manual admin edits made to it) is left untouched. Does not add any
+ * product that wasn't already in the catalog; the 2 combined rows are split
+ * into their existing individual models. Safe to re-run.
  */
 class BwellYuwellUpdateSeeder extends Seeder
 {
@@ -18,25 +20,28 @@ class BwellYuwellUpdateSeeder extends Seeder
         'Yuwell CT-300D Transmitter',
         'B.Well PRO-33',
         'B.Well PRO-35',
-        'B.Well MED-55 (G.IV)',
-        'B.Well TH-75',
         'B.Well MED-62',
         'B.Well MED-63',
         'B.Well PRO-04 Thermometer',
-        'B.Well WT-04 Thermometer',
         'B.Well NEB Basic PRO-110',
         'B.Well NEB Smart MED-120',
-        'B.Well NEB Junior PRO-115',
         'B.Well MED-420 Cushion Massager',
         'B.Well MED-440 Neck Massager',
     ];
 
     /**
-     * Combined rows replaced by the per-model splits above.
+     * Combined rows replaced by the per-model splits above, plus the 4
+     * B.Well models that were briefly added but weren't actually part of
+     * the existing catalog — this site only carries its existing range,
+     * not every model documented in docs/.
      */
     private const RETIRED_NAMES = [
         'B.Well PRO-33 / PRO-35',
         'B.Well MED-62 / MED-63',
+        'B.Well MED-55 (G.IV)',
+        'B.Well TH-75',
+        'B.Well NEB Junior PRO-115',
+        'B.Well WT-04 Thermometer',
     ];
 
     public function run(): void
