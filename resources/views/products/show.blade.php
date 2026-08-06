@@ -56,22 +56,27 @@
 
 <section class="chapter" id="product" aria-labelledby="product-h">
   <div class="wrap chapter-inner">
-    <div class="pane pane--c">
-      <p class="eyebrow"><i>&larr;</i><a class="lnk" href="/#collections">Back to the collection</a></p>
-      <span class="modal-co {{ $product->company }}">{{ $product->companyLabel }}</span>
-      <h1 id="product-h" style="margin-top:.6rem">{{ $product->name }}</h1>
-      <p class="modal-generic">{{ $product->generic }}</p>
-      <p class="lede" style="margin-top:1.4rem">{{ $product->description }}</p>
+    <div class="pane pane--c"@if ($product->imageUrl) style="display:flex;flex-wrap:wrap;gap:2.4rem;align-items:flex-start" @endif>
+      @if ($product->imageUrl)
+        <img src="{{ $product->imageUrl }}" alt="{{ $product->name }}" style="flex:0 0 260px;max-width:100%;border-radius:6px;background:var(--paper-2)" loading="eager" decoding="async">
+      @endif
+      <div style="flex:1 1 320px;min-width:0">
+        <p class="eyebrow"><i>&larr;</i><a class="lnk" href="/#collections">Back to the collection</a></p>
+        <span class="modal-co {{ $product->company }}">{{ $product->companyLabel }}</span>
+        <h1 id="product-h" style="margin-top:.6rem">{{ $product->name }}</h1>
+        <p class="modal-generic">{{ $product->generic }}</p>
+        <p class="lede" style="margin-top:1.4rem">{{ $product->description }}</p>
 
-      <div class="modal-specs" style="margin-top:2rem;max-width:640px">
-        <div><span>Category</span><em>{{ $product->category }}</em></div>
-        <div><span>Manufacturer</span><em>{{ $product->manufacturer }}</em></div>
-        <div><span>Presentations</span><em>{{ $product->variant }}</em></div>
-        <div><span>House</span><em>{{ $product->companyLabel }}</em></div>
+        <div class="modal-specs" style="margin-top:2rem;max-width:640px">
+          <div><span>Category</span><em>{{ $product->category }}</em></div>
+          <div><span>Manufacturer</span><em>{{ $product->manufacturer }}</em></div>
+          <div><span>Presentations</span><em>{{ $product->variant }}</em></div>
+          <div><span>House</span><em>{{ $product->companyLabel }}</em></div>
+        </div>
+
+        <a class="btn" style="margin-top:2.2rem;display:inline-flex" href="/#contact">Contact us about this product</a>
+        <p class="modal-note" style="margin-top:1rem">Information for healthcare professionals. For full prescribing or device information, contact Mega Pharma Group.</p>
       </div>
-
-      <a class="btn" style="margin-top:2.2rem;display:inline-flex" href="/#contact">Contact us about this product</a>
-      <p class="modal-note" style="margin-top:1rem">Information for healthcare professionals. For full prescribing or device information, contact Mega Pharma Group.</p>
     </div>
 
     @if ($related->isNotEmpty())
@@ -79,7 +84,10 @@
         <p class="eyebrow">More in {{ $product->category }}</p>
         <div class="grid">
           @foreach ($related as $r)
-            <a class="card" href="{{ route('products.show', $r) }}" data-co="{{ $r->company }}">
+            <a class="card{{ $r->imageUrl ? ' has-img' : '' }}" href="{{ route('products.show', $r) }}" data-co="{{ $r->company }}">
+              @if ($r->imageUrl)
+                <img class="card-img" src="{{ $r->imageUrl }}" alt="" loading="lazy" decoding="async">
+              @endif
               <span class="card-cat">{{ $r->category }}</span>
               <span class="card-name">{{ $r->name }}</span>
               <p class="generic">{{ $r->generic }}</p>

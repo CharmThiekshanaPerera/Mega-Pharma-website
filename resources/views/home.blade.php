@@ -543,7 +543,8 @@ function requestRender(){
   setTimeout(()=>{ if(token===renderToken) renderGrid(); },320);
 }
 function cardHTML(p,idx,i){
-  return '<a class="card" href="/products/'+p.slug+'" data-co="'+p.co+'" data-idx="'+idx+'" style="animation-delay:'+Math.min(i*35,350)+'ms">'+
+  return '<a class="card'+(p.img?' has-img':'')+'" href="/products/'+p.slug+'" data-co="'+p.co+'" data-idx="'+idx+'" style="animation-delay:'+Math.min(i*35,350)+'ms">'+
+    (p.img?'<img class="card-img" src="'+p.img+'" alt="" loading="lazy" decoding="async">':'')+
     '<span class="card-cat">'+p.cat+'</span>'+
     '<span class="card-name">'+p.n+'</span>'+
     '<p class="generic">'+p.g+'</p>'+

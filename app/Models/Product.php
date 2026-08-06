@@ -21,6 +21,7 @@ class Product extends Model
         'category',
         'manufacturer',
         'description',
+        'image_path',
     ];
 
     public function getRouteKeyName(): string
@@ -31,6 +32,11 @@ class Product extends Model
     public function getCompanyLabelAttribute(): string
     {
         return $this->company === 'pharma' ? 'Mega Pharma' : 'Mega Meditech';
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image_path ? asset($this->image_path) : null;
     }
 
     /**
@@ -64,6 +70,7 @@ class Product extends Model
             'cat' => $this->category,
             'mfr' => $this->manufacturer,
             'd' => $this->description,
+            'img' => $this->imageUrl,
         ];
     }
 }

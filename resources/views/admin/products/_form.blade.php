@@ -44,6 +44,18 @@
         <x-input-error :messages="$errors->get('manufacturer')" class="mt-2" />
     </div>
 
+    @if ($product->exists)
+        <div class="sm:col-span-2">
+            <x-input-label value="Product image" />
+            @if ($product->imageUrl)
+                <img src="{{ $product->imageUrl }}" alt="" class="mt-1 h-24 w-24 object-cover rounded border border-gray-200">
+            @else
+                <p class="mt-1 text-sm text-gray-500">No image set.</p>
+            @endif
+            <p class="mt-1 text-xs text-gray-400">Images are managed by placing a file in <code>public/images/products/</code> and setting <code>image_path</code> — there's no upload field here yet.</p>
+        </div>
+    @endif
+
     <div class="sm:col-span-2">
         <x-input-label for="description" value="Description" />
         <textarea id="description" name="description" rows="4" required

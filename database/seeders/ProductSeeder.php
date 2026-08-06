@@ -40,6 +40,7 @@ class ProductSeeder extends Seeder
                 'category' => $p['cat'],
                 'manufacturer' => $p['mfr'],
                 'description' => $p['d'],
+                'image_path' => $p['img'] ?? null,
                 'created_at' => $now,
                 'updated_at' => $now,
             ];

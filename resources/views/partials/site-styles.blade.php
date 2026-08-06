@@ -325,6 +325,8 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .card::after{content:"";position:absolute;top:1.2rem;right:1.15rem;width:6px;height:6px;border-radius:50%}
 .card[data-co="pharma"]::after{background:var(--red)}
 .card[data-co="meditech"]::after{background:var(--navy)}
+.card.has-img::after{display:none}
+.card-img{width:calc(100% + 2.7rem);height:150px;object-fit:cover;margin:-1.35rem -1.35rem .3rem;border-radius:4px 4px 0 0;display:block;background:var(--paper-2)}
 .card-cat{font-size:.56rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);padding-right:1.4rem}
 .card-name{font-family:var(--serif);font-size:1.32rem;font-weight:600;line-height:1.15}
 .card .generic{font-size:.78rem;color:var(--muted);line-height:1.5;flex:1}
