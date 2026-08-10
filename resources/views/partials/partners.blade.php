@@ -4,8 +4,18 @@
     <div class="pane pane--c rv" style="background:transparent;border:none;box-shadow:none;backdrop-filter:none">
       <p class="eyebrow"><i>&middot;</i>Our partners</p>
       <h2 id="partners-h">Global principals we represent in Sri Lanka.</h2>
-      <ul class="partner-cloud">
-        <li>Micro Labs</li><li>Himalaya</li><li>ACME</li><li>EAR India</li><li>Dr. F. K&ouml;hler Chemie</li><li>TaiDoc</li><li>YuWell</li><li>B.Well Swiss</li><li>DeRoyal</li><li>Eucare</li><li>Humeca</li><li>Telea</li><li>MedGyn</li><li>KLS Martin</li><li>XVIVO Perfusion</li><li>Medispec</li><li>Tynor</li><li>Connexicon</li><li>Yasee QY Medical</li><li>Sky Nutraceuticals</li>
+    </div>
+  </div>
+  @php
+    $partnerNames = ['Micro Labs','Himalaya','ACME','EAR India','Dr. F. Köhler Chemie','TaiDoc','YuWell','B.Well Swiss','DeRoyal','Eucare','Humeca','Telea','MedGyn','KLS Martin','XVIVO Perfusion','Medispec','Tynor','Connexicon','Yasee QY Medical','Sky Nutraceuticals'];
+  @endphp
+  <div class="partner-marquee rv">
+    <div class="partner-track">
+      <ul class="partner-list" aria-label="Our partners">
+        @foreach ($partnerNames as $name)<li>{{ $name }}</li>@endforeach
+      </ul>
+      <ul class="partner-list" aria-hidden="true">
+        @foreach ($partnerNames as $name)<li>{{ $name }}</li>@endforeach
       </ul>
     </div>
   </div>
