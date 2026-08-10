@@ -230,12 +230,6 @@
         <div class="value"><i aria-hidden="true">v.</i><div><h3>People &amp; team spirit</h3><p>We move together. A strong team culture supports the quality our customers and partners rely on.</p></div></div>
         <div class="value"><i aria-hidden="true">vi.</i><div><h3>Journey toward excellence</h3><p>There is always room for improvement. We are receptive to constructive criticism and suggestions.</p></div></div>
       </div>
-      <div class="partners">
-        <p>Our global principals</p>
-        <ul class="partner-cloud">
-          <li>Micro Labs</li><li>Himalaya</li><li>ACME</li><li>EAR India</li><li>Dr. F. Köhler Chemie</li><li>TaiDoc</li><li>YuWell</li><li>B.Well Swiss</li><li>DeRoyal</li><li>Eucare</li><li>Humeca</li><li>Telea</li><li>MedGyn</li><li>KLS Martin</li><li>XVIVO Perfusion</li><li>Medispec</li><li>Tynor</li><li>Connexicon</li><li>Yasee QY Medical</li><li>Sky Nutraceuticals</li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -282,6 +276,8 @@
   </div>
 </section>
 </main>
+
+@include('partials.partners')
 
 <!-- ============ FOOTER ============ -->
 <footer>

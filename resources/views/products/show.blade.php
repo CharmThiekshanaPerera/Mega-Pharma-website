@@ -56,6 +56,8 @@
 
 <section class="chapter" id="product" aria-labelledby="product-h">
   <div class="wrap chapter-inner">
+    @php $details = $product->details; @endphp
+
     <div class="pane pane--c"@if ($product->imageUrl) style="display:flex;flex-wrap:wrap;gap:2.4rem;align-items:flex-start" @endif>
       @if ($product->imageUrl)
         <img src="{{ $product->imageUrl }}" alt="{{ $product->name }}" style="flex:0 0 260px;max-width:100%;border-radius:6px;background:var(--paper-2)" loading="eager" decoding="async">
@@ -65,19 +67,89 @@
         <span class="modal-co {{ $product->company }}">{{ $product->companyLabel }}</span>
         <h1 id="product-h" style="margin-top:.6rem">{{ $product->name }}</h1>
         <p class="modal-generic">{{ $product->generic }}</p>
+        @if (!empty($details['tagline']))
+          <p class="brochure-tagline">&ldquo;{{ $details['tagline'] }}&rdquo;</p>
+        @endif
         <p class="lede" style="margin-top:1.4rem">{{ $product->description }}</p>
 
-        <div class="modal-specs" style="margin-top:2rem;max-width:640px">
-          <div><span>Category</span><em>{{ $product->category }}</em></div>
-          <div><span>Manufacturer</span><em>{{ $product->manufacturer }}</em></div>
-          <div><span>Presentations</span><em>{{ $product->variant }}</em></div>
-          <div><span>House</span><em>{{ $product->companyLabel }}</em></div>
-        </div>
+        @if (empty($details['specs']))
+          <div class="modal-specs" style="margin-top:2rem;max-width:640px">
+            <div><span>Category</span><em>{{ $product->category }}</em></div>
+            <div><span>Manufacturer</span><em>{{ $product->manufacturer }}</em></div>
+            <div><span>Presentations</span><em>{{ $product->variant }}</em></div>
+            <div><span>House</span><em>{{ $product->companyLabel }}</em></div>
+          </div>
+        @endif
 
         <a class="btn" style="margin-top:2.2rem;display:inline-flex" href="/#contact">Contact us about this product</a>
         <p class="modal-note" style="margin-top:1rem">Information for healthcare professionals. For full prescribing or device information, contact Mega Pharma Group.</p>
       </div>
     </div>
+
+    @if (!empty($details['components']))
+      <div class="pane" style="margin-top:2.6rem;background:transparent;border:none;box-shadow:none;backdrop-filter:none">
+        <p class="eyebrow">Meet the {{ $product->name }} system</p>
+        <div class="brochure-components">
+          @foreach ($details['components'] as $c)
+            <div class="brochure-component">
+              <span class="brochure-component-n">{{ $c['n'] }}</span>
+              <h3>{{ $c['t'] }}</h3>
+              <p>{{ $c['d'] }}</p>
+            </div>
+          @endforeach
+        </div>
+        @if (!empty($details['callout']))
+          <p class="brochure-callout">{{ $details['callout'] }}</p>
+        @endif
+      </div>
+    @endif
+
+    @if (!empty($details['highlights']))
+      <div class="pane" style="margin-top:2.6rem;background:transparent;border:none;box-shadow:none;backdrop-filter:none">
+        <p class="eyebrow">Why it works</p>
+        <div class="brochure-highlights">
+          @foreach ($details['highlights'] as $h)
+            <div class="brochure-highlight">
+              <h3>{{ $h['h'] }}</h3>
+              @if (!empty($h['points']))
+                <ul>
+                  @foreach ($h['points'] as $point)
+                    <li>{{ $point }}</li>
+                  @endforeach
+                </ul>
+              @elseif (!empty($h['body']))
+                <p>{{ $h['body'] }}</p>
+              @endif
+            </div>
+          @endforeach
+        </div>
+      </div>
+    @endif
+
+    @if (!empty($details['specs']))
+      <div class="pane pane--c" style="margin-top:2.6rem">
+        <p class="eyebrow">Specification</p>
+        @foreach ($details['specs'] as $group)
+          <table class="brochure-spec-table">
+            <caption>{{ $group['group'] }}</caption>
+            <tbody>
+              @foreach ($group['rows'] as $row)
+                <tr><th>{{ $row['label'] }}</th><td>{{ $row['value'] }}</td></tr>
+              @endforeach
+            </tbody>
+          </table>
+        @endforeach
+
+        @if (!empty($details['manufacturer_info']))
+          @php $mi = $details['manufacturer_info']; @endphp
+          <p class="brochure-mfr-info">
+            <strong>{{ $mi['name'] }}</strong><br>
+            {{ $mi['address'] }}<br>
+            Tel: {{ $mi['tel'] }} &middot; {{ $mi['email'] }} &middot; {{ $mi['website'] }}
+          </p>
+        @endif
+      </div>
+    @endif
 
     @if ($related->isNotEmpty())
       <div class="pane" style="margin-top:2.6rem;background:transparent;border:none;box-shadow:none;backdrop-filter:none">
@@ -101,6 +173,8 @@
 </section>
 
 </main>
+
+@include('partials.partners')
 
 <!-- ============ FOOTER ============ -->
 <footer>

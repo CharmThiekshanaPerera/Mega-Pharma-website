@@ -67,6 +67,7 @@ class BwellYuwellUpdateSeeder extends Seeder
                 'manufacturer' => $p['mfr'],
                 'description' => $p['d'],
                 'image_path' => $p['img'] ?? null,
+                'details' => $p['details'] ?? null,
             ]);
 
             if (! $product->exists) {

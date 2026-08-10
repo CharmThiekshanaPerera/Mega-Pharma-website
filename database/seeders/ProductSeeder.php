@@ -41,6 +41,7 @@ class ProductSeeder extends Seeder
                 'manufacturer' => $p['mfr'],
                 'description' => $p['d'],
                 'image_path' => $p['img'] ?? null,
+                'details' => isset($p['details']) ? json_encode($p['details']) : null,
                 'created_at' => $now,
                 'updated_at' => $now,
             ];

@@ -455,6 +455,30 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .modal-specs em{font-style:normal;text-align:right}
 .modal-note{margin-top:1.1rem;font-size:.7rem;color:var(--muted)}
 
+/* ---------- brochure-style product sections ---------- */
+.brochure-tagline{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--red);margin-top:.9rem;max-width:56ch}
+.brochure-components{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2rem}
+@media (max-width:820px){.brochure-components{grid-template-columns:1fr}}
+.brochure-component{border-top:1px solid var(--ink);padding-top:1rem}
+.brochure-component-n{font-family:var(--serif);font-size:1.6rem;color:var(--muted);display:block}
+.brochure-component h3{font-family:var(--serif);font-size:1.08rem;font-weight:600;margin-top:.3rem}
+.brochure-component p{font-size:.84rem;color:var(--muted);margin-top:.5rem;line-height:1.55}
+.brochure-callout{margin-top:2rem;padding:1rem 1.3rem;background:var(--paper-2);border-left:3px solid var(--navy);font-size:.88rem;font-weight:500}
+.brochure-highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;margin-top:2rem}
+@media (max-width:820px){.brochure-highlights{grid-template-columns:1fr}}
+.brochure-highlight{background:#fff;border:1px solid var(--hair);border-radius:4px;padding:1.3rem 1.4rem}
+.brochure-highlight h3{font-family:var(--serif);font-size:1.05rem;font-weight:600;letter-spacing:.02em}
+.brochure-highlight ul{margin-top:.7rem;padding-left:1.1rem;font-size:.84rem;color:var(--muted);line-height:1.7}
+.brochure-highlight p{margin-top:.7rem;font-size:.84rem;color:var(--muted);line-height:1.6}
+.brochure-spec-table{width:100%;border-collapse:collapse;margin-top:1.6rem;font-size:.82rem}
+.brochure-spec-table caption{text-align:left;font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);padding-bottom:.6rem;caption-side:top}
+.brochure-spec-table th,.brochure-spec-table td{padding:.6rem 0;border-bottom:1px solid var(--hair);text-align:left;font-weight:400}
+.brochure-spec-table th{color:var(--muted);width:46%}
+.brochure-spec-table td{color:var(--ink)}
+.brochure-mfr-info{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--hair);font-size:.72rem;color:var(--muted);line-height:1.7}
+
+.chapter--partners{min-height:0;padding:5rem 0}
+
 /* reduced motion: calm editorial page, world becomes still */
 @media (prefers-reduced-motion:reduce){
   .scroll-cue{display:none}

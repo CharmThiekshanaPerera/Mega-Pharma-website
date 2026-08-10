@@ -22,6 +22,11 @@ class Product extends Model
         'manufacturer',
         'description',
         'image_path',
+        'details',
+    ];
+
+    protected $casts = [
+        'details' => 'array',
     ];
 
     public function getRouteKeyName(): string
