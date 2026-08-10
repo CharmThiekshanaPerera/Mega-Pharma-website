@@ -58,9 +58,17 @@
   <div class="wrap chapter-inner">
     @php $details = $product->details; @endphp
 
-    <div class="pane pane--c"@if ($product->imageUrl) style="display:flex;flex-wrap:wrap;gap:2.4rem;align-items:flex-start" @endif>
+    <div class="pane pane--c"@if ($product->imageUrl) style="display:flex;flex-wrap:wrap;gap:2.8rem;align-items:flex-start" @endif>
       @if ($product->imageUrl)
-        <img src="{{ $product->imageUrl }}" alt="{{ $product->name }}" style="flex:0 0 260px;max-width:100%;border-radius:6px;background:var(--paper-2)" loading="eager" decoding="async">
+        <div class="product-hero-media">
+          <img src="{{ $product->imageUrl }}" alt="{{ $product->name }}" loading="eager" decoding="async">
+          @if (!empty($details['award']))
+            <div class="product-hero-award">
+              <img src="{{ asset($details['award']['image']) }}" alt="" loading="lazy" decoding="async">
+              <div><strong>{{ $details['award']['label'] }}</strong><span>{{ $details['award']['by'] }}</span></div>
+            </div>
+          @endif
+        </div>
       @endif
       <div style="flex:1 1 320px;min-width:0">
         <p class="eyebrow"><i>&larr;</i><a class="lnk" href="/#collections">Back to the collection</a></p>
@@ -112,9 +120,13 @@
             <div class="brochure-highlight">
               <h3>{{ $h['h'] }}</h3>
               @if (!empty($h['points']))
-                <ul>
+                <ul class="{{ collect($h['points'])->contains(fn ($p) => is_array($p) && !empty($p['icon'])) ? 'has-icons' : '' }}">
                   @foreach ($h['points'] as $point)
-                    <li>{{ $point }}</li>
+                    @php $text = is_array($point) ? $point['t'] : $point; $icon = is_array($point) ? ($point['icon'] ?? null) : null; @endphp
+                    <li>
+                      @if ($icon)<img src="{{ asset($icon) }}" alt="" loading="lazy" decoding="async">@endif
+                      <span>{{ $text }}</span>
+                    </li>
                   @endforeach
                 </ul>
               @elseif (!empty($h['body']))
