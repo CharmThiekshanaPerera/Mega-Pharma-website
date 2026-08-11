@@ -488,7 +488,10 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .brochure-spec-table td{color:var(--ink)}
 .brochure-mfr-info{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--hair);font-size:.72rem;color:var(--muted);line-height:1.7}
 
-.chapter--partners{min-height:0;padding:5rem 0}
+.chapter--partners{min-height:0;padding:5rem 0;display:block}
+.chapter--partners .pane--c{text-align:center;margin:0 auto;max-width:640px}
+.chapter--partners .eyebrow{justify-content:center}
+.chapter--partners .eyebrow::after{display:none}
 
 /* reduced motion: calm editorial page, world becomes still */
 @media (prefers-reduced-motion:reduce){
