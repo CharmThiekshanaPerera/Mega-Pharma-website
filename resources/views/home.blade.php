@@ -244,7 +244,7 @@
         <div>
           <div class="c-item"><i aria-hidden="true">📍</i><div><b>Registered office</b><address>93/5, Dutugemunu Street,<br>Colombo 06, Sri Lanka</address></div></div>
           <div class="c-item"><i aria-hidden="true">📞</i><div><b>Telephone</b><p><a class="lnk" href="tel:+94114203596">+94 11 420 3596–7</a><br><a class="lnk" href="tel:+94112812390">+94 11 281 2390–1</a></p></div></div>
-          <div class="c-item"><i aria-hidden="true">📠</i><div><b>Facsimile</b><p>+94 11 552 2784 &nbsp;·&nbsp; +94 11 282 8481</p></div></div>
+          <div class="c-item"><i aria-hidden="true">📠</i><div><b>Facsimile</b><p>+94 11 282 8481</p></div></div>
           <div class="c-item"><i aria-hidden="true">✉</i><div><b>Email &amp; web</b><p><a class="lnk" href="mailto:info@megapharma.lk">info@megapharma.lk</a><br><a class="lnk" href="https://www.megapharma.lk" rel="noopener">www.megapharma.lk</a></p></div></div>
         </div>
         <!-- Contact form: POSTs to the Laravel /contact route (see
@@ -745,7 +745,7 @@ renderChips(); requestRender();
     {film:3,dim:.06,cam:[-1.1,.35,9.6],look:[-.3,.1],cap:[-3.6, .7, 1,  .85]}, // 02 group / island
     {film:1,dim:.04,cam:[1.3,-.25,9.2],look:[.35,0], cap:[ 3.7, .3, .5, .98]}, // 03 pharma
     {film:2,dim:.04,cam:[-1.3,.25,9.2],look:[-.35,0],cap:[-3.7,-.3, .5, .98]}, // 04 meditech
-    {film:1,dim:.8, cam:[0,.15,11],  look:[0,.05], cap:[ 0, 3.1,-2,  .4]},     // 05 collections (world rests)
+    {film:1,dim:.2, cam:[0,.15,11],  look:[0,.05], cap:[ 0, 3.1,-2,  .4]},     // 05 collections (world rests, but stays visible behind the frosted panel)
     {film:4,dim:.14,cam:[.6,0,10],   look:[.15,0], cap:[ 3.1,-1.7, 0, .6]},    // 06 standards
     {film:0,dim:.3, cam:[0,-.15,10.4],look:[0,-.05],cap:[-3.0,-2.0, 1, .5]}    // 07 contact
   ];

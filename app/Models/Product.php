@@ -45,6 +45,25 @@ class Product extends Model
     }
 
     /**
+     * The two-stop gradient used behind the product page's WebGL world.
+     * Defaults to the house colour (pharma red / meditech navy) so every
+     * page at least matches its own brand; a specific product can override
+     * with its real brand colour via details.theme = ["#paper","#accent"].
+     */
+    public function getThemeColorsAttribute(): array
+    {
+        $theme = $this->details['theme'] ?? null;
+
+        if (is_array($theme) && count($theme) === 2) {
+            return array_values($theme);
+        }
+
+        return $this->company === 'pharma'
+            ? ['#f6e9e4', '#b5121b']
+            : ['#eef2f8', '#1d3e7e'];
+    }
+
+    /**
      * Slugify $name, disambiguating with a numeric suffix against any
      * existing product slugs (so "Aclin Gel" -> "aclin-gel", "aclin-gel-2"…).
      */

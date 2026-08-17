@@ -365,9 +365,15 @@ if(!reduceMotion&&matchMedia("(hover:hover) and (pointer:fine)").matches){
   cam.lookAt(0,0,-7);
 
   scene.add(new THREE.AmbientLight(0xffffff,.75));
+  /* this product's own brand colours — pharma red / meditech navy by
+     default, or a specific product's real brand colour (see
+     Product::getThemeColorsAttribute()) */
+  const THEME_A = @json($product->themeColors[0]);
+  const THEME_B = @json($product->themeColors[1]);
+
   const key=new THREE.DirectionalLight(0xfff6ea,.9);  key.position.set(6,9,7);   scene.add(key);
   const fill=new THREE.PointLight(0x1d3e7e,.25,40);   fill.position.set(-7,-3,5); scene.add(fill);
-  const rim=new THREE.PointLight(0xb5121b,.35,40);    rim.position.set(0,4,-6);   scene.add(rim);
+  const rim=new THREE.PointLight(new THREE.Color(THEME_B),.35,40); rim.position.set(0,4,-6); scene.add(rim);
 
   /* single calm gradient screen — no video film on product pages */
   const SCREEN_Z=-14;
@@ -381,7 +387,7 @@ if(!reduceMotion&&matchMedia("(hover:hover) and (pointer:fine)").matches){
   }
   const screen=new THREE.Mesh(
     new THREE.PlaneGeometry(1,1,1,1),
-    new THREE.MeshBasicMaterial({map:gradientTexture("#f6e9e4","#b5121b"),transparent:true,opacity:1,depthWrite:false})
+    new THREE.MeshBasicMaterial({map:gradientTexture(THEME_A,THEME_B),transparent:true,opacity:1,depthWrite:false})
   );
   screen.position.z=SCREEN_Z; scene.add(screen);
   function fitScreen(){

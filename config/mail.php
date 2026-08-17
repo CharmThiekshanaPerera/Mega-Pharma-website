@@ -115,4 +115,17 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact Form Notification Address
+    |--------------------------------------------------------------------------
+    |
+    | Where new website contact-form enquiries are emailed, in addition to
+    | being stored in the admin panel. Defaults to the site's public contact
+    | address unless a dedicated inbox is set in MAIL_ADMIN_ADDRESS.
+    |
+    */
+
+    'admin_address' => env('MAIL_ADMIN_ADDRESS', 'info@megapharma.lk'),
+
 ];

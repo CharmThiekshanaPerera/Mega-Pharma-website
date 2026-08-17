@@ -273,7 +273,7 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
   padding:.95rem 0;display:flex;flex-direction:column;gap:.85rem;
 }
 .prod-row{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
-.tabs{display:flex;gap:1.7rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.6rem 1.7rem}
 .tab{position:relative;padding:.4rem 0;font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:color .3s}
 .tab::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--red);transition:width .45s var(--ease)}
 .tab:hover{color:var(--ink)}
@@ -486,6 +486,14 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .brochure-spec-table th,.brochure-spec-table td{padding:.6rem 0;border-bottom:1px solid var(--hair);text-align:left;font-weight:400}
 .brochure-spec-table th{color:var(--muted);width:46%}
 .brochure-spec-table td{color:var(--ink)}
+@media (max-width:600px){
+  .product-hero-media{flex-basis:100%}
+  .product-hero-award{flex-wrap:wrap}
+  .brochure-spec-table,.brochure-spec-table tbody,.brochure-spec-table tr{display:block}
+  .brochure-spec-table tr{padding:.6rem 0;border-bottom:1px solid var(--hair)}
+  .brochure-spec-table th,.brochure-spec-table td{display:block;padding:0;border:none;width:auto}
+  .brochure-spec-table td{margin-top:.15rem}
+}
 .brochure-mfr-info{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--hair);font-size:.72rem;color:var(--muted);line-height:1.7}
 
 .chapter--partners{min-height:0;padding:5rem 0;display:block}
