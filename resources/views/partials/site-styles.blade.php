@@ -366,12 +366,12 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .partner-track{display:flex;width:max-content;animation:partner-scroll 38s linear infinite}
 .partner-marquee:hover .partner-track{animation-play-state:paused}
 .partner-list{display:flex;align-items:center;list-style:none}
-.partner-list li{display:flex;align-items:center;justify-content:center;height:48px;padding:0 1.9rem;position:relative}
+.partner-list li{display:flex;align-items:center;justify-content:center;height:72px;padding:0 2.3rem;position:relative}
 .partner-list li::after{content:"·";position:absolute;right:0;color:var(--hair)}
 .partner-list li span{font-family:var(--serif);font-size:1.14rem;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .35s}
 .partner-list li:hover span{color:var(--ink)}
-.partner-list li img{height:30px;max-width:130px;width:auto;object-fit:contain;filter:grayscale(1) opacity(.7);transition:filter .35s}
-.partner-list li:hover img{filter:grayscale(0) opacity(1)}
+.partner-list li img{height:52px;max-width:190px;width:auto;object-fit:contain;opacity:1;transition:transform .35s}
+.partner-list li:hover img{transform:scale(1.06)}
 @keyframes partner-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @media (prefers-reduced-motion:reduce){.partner-track{animation:none}}
 
