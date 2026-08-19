@@ -132,6 +132,32 @@
         <article><h3>Our mission</h3><p>To source quality pharmaceuticals and medical technology from around the globe to strengthen the healing of Sri Lanka.</p></article>
       </div>
     </div>
+
+    <!-- TODO(founder): DRAFT content pending real name/title/photo/quote —
+         do not treat this copy as final, factual content about a real
+         person. Replace founder-photo-placeholder with a real <img> once
+         a photo is supplied, and swap every [Founder Name] / [Title] /
+         quote line for the approved real text. -->
+    <div class="pane pane--c founder-block rv" style="max-width:980px">
+      <div class="founder-grid">
+        <figure class="founder-photo">
+          <div class="founder-photo-placeholder" aria-hidden="true"><span>Photo<br>pending</span></div>
+          <figcaption>
+            <strong>Shirantha Peries</strong>
+            <span>MCIM (UK), MBA (UK), MBA (USA)</span>
+            <em>Founder, Mega Pharma Group</em>
+          </figcaption>
+        </figure>
+        <div class="founder-copy">
+          <p class="eyebrow"><i>&middot;</i>Our visionary</p>
+          <h3>A message from our founder</h3>
+          <p>Shirantha Peries founded Mega Pharma Group in June 1995 with a simple conviction: that Sri Lanka deserved access to the same quality of medicine and medical technology available anywhere in the world, delivered with uncompromising ethics.</p>
+          <p>That conviction has shaped three decades of growth — from a single specialised pharmaceutical company to a group spanning pharmaceuticals and medical technology, working with principals across four continents and reaching healthcare professionals and patients island-wide.</p>
+          <p>Today, under his continued leadership, Mega Pharma Group remains committed to the same founding values: honesty, integrity, and an unwavering focus on the people we serve.</p>
+          <blockquote>&ldquo;Healthcare is a responsibility, not just a business. Every product we bring into Sri Lanka must meet a standard I would trust for my own family.&rdquo;<cite>&mdash; Shirantha Peries, Founder</cite></blockquote>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

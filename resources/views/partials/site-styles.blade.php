@@ -228,6 +228,33 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .vm p{font-family:var(--serif);font-size:clamp(1.15rem,1.9vw,1.45rem);line-height:1.35;margin-top:.8rem}
 @media (max-width:680px){.vm{grid-template-columns:1fr}}
 
+/* founder message */
+.founder-block{margin:2.6rem auto 0}
+.founder-grid{display:grid;grid-template-columns:280px 1fr;gap:2.6rem;align-items:start}
+@media (max-width:760px){.founder-grid{grid-template-columns:1fr}}
+.founder-photo{margin:0;position:relative;border-radius:6px;overflow:hidden;background:var(--paper-2)}
+.founder-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.founder-photo-placeholder{
+  width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,var(--paper-2),var(--hair));
+  color:var(--muted);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;
+}
+.founder-photo figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:1.1rem 1.2rem;
+  background:linear-gradient(0deg,rgba(19,26,46,.82),rgba(19,26,46,0));
+  display:flex;flex-direction:column;gap:.15rem;
+}
+.founder-photo figcaption strong{color:#fff;font-family:var(--serif);font-size:1.1rem;font-weight:600}
+.founder-photo figcaption span{color:rgba(255,255,255,.75);font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.founder-photo figcaption em{color:rgba(255,255,255,.6);font-style:normal;font-size:.66rem;margin-top:.2rem}
+.founder-copy h3{font-size:clamp(1.5rem,2.6vw,2rem);margin-top:.2rem}
+.founder-copy p{color:#4d493f;font-size:.94rem;line-height:1.65;margin-top:1rem}
+.founder-copy blockquote{
+  margin:1.6rem 0 0;padding-left:1.2rem;border-left:2px solid var(--red);
+  font-family:var(--serif);font-style:italic;font-size:1.08rem;line-height:1.5;
+}
+.founder-copy blockquote cite{display:block;margin-top:.6rem;font-family:var(--sans);font-style:normal;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
 /* house facts */
 .house-num{
   font-family:var(--serif);font-style:italic;font-weight:400;
