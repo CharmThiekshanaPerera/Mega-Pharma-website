@@ -7,16 +7,46 @@
     </div>
   </div>
   @php
-    $partnerNames = ['Micro Labs','Himalaya','ACME','EAR India','Dr. F. Köhler Chemie','TaiDoc','YuWell','B.Well Swiss','DeRoyal','Eucare','Humeca','Telea','MedGyn','KLS Martin','XVIVO Perfusion','Medispec','Tynor','Connexicon','Yasee QY Medical','Sky Nutraceuticals'];
+    // Real logo where we have a verified official mark; null falls back to
+    // a text wordmark (no fabricated/unverified logos are used).
+    $partners = [
+      ['n' => 'Micro Labs', 'logo' => 'images/partners/micro-labs.jpg'],
+      ['n' => 'Himalaya', 'logo' => 'images/partners/himalaya.svg'],
+      ['n' => 'ACME', 'logo' => 'images/partners/acme.png'],
+      ['n' => 'EAR India', 'logo' => null],
+      ['n' => 'Dr. F. Köhler Chemie', 'logo' => 'images/partners/dr-f-kohler-chemie.png'],
+      ['n' => 'TaiDoc', 'logo' => 'images/partners/taidoc.png'],
+      ['n' => 'YuWell', 'logo' => 'images/partners/yuwell.png'],
+      ['n' => 'B.Well Swiss', 'logo' => 'images/partners/bwell-swiss.png'],
+      ['n' => 'DeRoyal', 'logo' => 'images/partners/deroyal.png'],
+      ['n' => 'Eucare', 'logo' => null],
+      ['n' => 'Humeca', 'logo' => 'images/partners/humeca.svg'],
+      ['n' => 'Telea', 'logo' => 'images/partners/telea.svg'],
+      ['n' => 'MedGyn', 'logo' => 'images/partners/medgyn.png'],
+      ['n' => 'KLS Martin', 'logo' => null],
+      ['n' => 'XVIVO Perfusion', 'logo' => null],
+      ['n' => 'Medispec', 'logo' => null],
+      ['n' => 'Tynor', 'logo' => 'images/partners/tynor.png'],
+      ['n' => 'Connexicon', 'logo' => null],
+      ['n' => 'Yasee QY Medical', 'logo' => 'images/partners/yasee-qy-medical.png'],
+      ['n' => 'Sky Nutraceuticals', 'logo' => null],
+    ];
   @endphp
   <div class="partner-marquee rv">
     <div class="partner-track">
-      <ul class="partner-list" aria-label="Our partners">
-        @foreach ($partnerNames as $name)<li>{{ $name }}</li>@endforeach
-      </ul>
-      <ul class="partner-list" aria-hidden="true">
-        @foreach ($partnerNames as $name)<li>{{ $name }}</li>@endforeach
-      </ul>
+      @for ($i = 0; $i < 2; $i++)
+        <ul class="partner-list"@if($i === 1) aria-hidden="true" @else aria-label="Our partners" @endif>
+          @foreach ($partners as $p)
+            <li>
+              @if ($p['logo'])
+                <img src="{{ asset($p['logo']) }}" alt="{{ $p['n'] }}" loading="lazy" decoding="async">
+              @else
+                <span>{{ $p['n'] }}</span>
+              @endif
+            </li>
+          @endforeach
+        </ul>
+      @endfor
     </div>
   </div>
 </section>
