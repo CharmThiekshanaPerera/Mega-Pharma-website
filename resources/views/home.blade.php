@@ -133,15 +133,13 @@
       </div>
     </div>
 
-    <!-- TODO(founder): DRAFT content pending real name/title/photo/quote —
-         do not treat this copy as final, factual content about a real
-         person. Replace founder-photo-placeholder with a real <img> once
-         a photo is supplied, and swap every [Founder Name] / [Title] /
-         quote line for the approved real text. -->
+    <!-- TODO(founder): message body + pull-quote below are still DRAFT
+         copy — real name/title/photo are confirmed, but this text has not
+         been reviewed/approved by Shirantha Peries himself. -->
     <div class="pane pane--c founder-block rv" style="max-width:980px">
       <div class="founder-grid">
         <figure class="founder-photo">
-          <div class="founder-photo-placeholder" aria-hidden="true"><span>Photo<br>pending</span></div>
+          <img src="{{ asset('images/founder-shirantha-peries.jpg') }}" alt="Shirantha Peries, Founder of Mega Pharma Group" loading="lazy" decoding="async">
           <figcaption>
             <strong>Shirantha Peries</strong>
             <span>MCIM (UK), MBA (UK), MBA (USA)</span>
