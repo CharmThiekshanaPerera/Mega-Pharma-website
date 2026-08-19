@@ -283,7 +283,13 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
    a calm catalogue "reading room" that rises over the cinematic world. */
 #collections{
   display:block;padding:clamp(5rem,9vw,7.5rem) 0 7rem;
-  background:var(--paper-2);position:relative;z-index:11;
+  /* was a fully opaque var(--paper-2) — that sat above #world (z-index:0)
+     and hid the cinematic backdrop completely no matter the veil dim set
+     in the KF timeline. Translucent instead, so the world stays visible
+     through the gaps; individual .card elements are still opaque white,
+     so the product grid itself stays fully legible. */
+  background:rgba(242,239,232,.55);position:relative;z-index:11;
+  backdrop-filter:blur(10px) saturate(1.05);-webkit-backdrop-filter:blur(10px) saturate(1.05);
   box-shadow:0 -34px 66px -38px rgba(19,26,46,.35),0 34px 66px -38px rgba(19,26,46,.35);
 }
 #collections .pane{
