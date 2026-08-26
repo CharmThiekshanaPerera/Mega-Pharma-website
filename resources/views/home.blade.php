@@ -91,7 +91,7 @@
 <!-- ============ 01 · OVERTURE ============ -->
 <section class="chapter" id="top" data-scene="0" aria-label="Overture">
   <div class="wrap chapter-inner">
-    <div id="heroCopy" style="max-width:720px">
+    <div id="heroCopy" class="pane" style="max-width:720px">
       <p class="kicker rv">Colombo, Sri Lanka — Est. 1995</p>
       <h1 class="rv">A <em>Mega</em> commitment to medicine.</h1>
       <p class="lede rv">For three decades, Mega Pharma Group has sourced quality pharmaceuticals and medical technology from around the globe — to strengthen the healing of Sri Lanka through ethical promotion and island-wide reach.</p>
