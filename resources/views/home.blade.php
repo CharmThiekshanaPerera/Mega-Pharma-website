@@ -829,10 +829,24 @@ renderChips(); requestRender();
 
   /* ---------- the render loop: scroll → world state ---------- */
   const clock=new THREE.Clock();
-  let raf=null;
+  let raf=null, frameErrorLogged=false;
   function frame(){
     raf=null;
     if(document.hidden){ return; }                                   // pause off-tab
+    /* Everything below can throw (a KF/section lookup edge case, a texture
+       not yet ready, …) and previously any such error would kill the loop
+       for good — nothing after it reschedules requestAnimationFrame, so the
+       whole cinematic world (camera, capsule sway, film crossfade) freezes
+       on whatever frame it died on until visibilitychange happens to fire.
+       Keep the loop alive across a bad frame instead of losing it silently. */
+    try{
+      renderFrame();
+    }catch(err){
+      if(!frameErrorLogged){ frameErrorLogged=true; console.error("[world] frame error — recovering",err); }
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  function renderFrame(){
     const t=clock.getElapsedTime();
     const y=scrollY;
 
@@ -876,7 +890,6 @@ renderChips(); requestRender();
     key.intensity=.85+Math.sin(t*.7)*.08;
 
     renderer.render(scene,cam);
-    raf=requestAnimationFrame(frame);
   }
 
   measure();
