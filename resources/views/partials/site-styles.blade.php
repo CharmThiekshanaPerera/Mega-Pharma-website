@@ -309,8 +309,9 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .prod-controls{
   position:sticky;top:64px;z-index:60;margin-top:2.4rem;
   background:var(--paper-2);
-  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
-  padding:.95rem 0;display:flex;flex-direction:column;gap:.85rem;
+  border:1px solid var(--hair);border-radius:8px;
+  padding:.95rem clamp(1.1rem,3vw,1.8rem);display:flex;flex-direction:column;gap:.85rem;
+  box-shadow:0 18px 40px -28px rgba(19,26,46,.25);
 }
 .prod-row{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
 .tabs{display:flex;flex-wrap:wrap;gap:.6rem 1.7rem}
@@ -393,7 +394,7 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
    Pharma" plus a count can overflow the line instead of wrapping. */
 @media (max-width:640px){
   .prod-head{gap:1.2rem}
-  .prod-controls{padding:.8rem 0;gap:.7rem}
+  .prod-controls{padding:.9rem 1rem;gap:.7rem}
   .prod-row{gap:.9rem}
   /* "All Houses / Mega Pharma / Mega Meditech" together measure ~370px —
      just enough wider than a ~350px phone content-width that the third tab
