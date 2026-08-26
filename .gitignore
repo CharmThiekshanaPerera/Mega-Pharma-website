@@ -31,6 +31,9 @@ yarn-error.log*
 *.swp
 *.swo
 
+# ── Docs (scraped reference pages) ─────────────────────────────
+docs/
+
 # ── OS files ──────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
