@@ -392,6 +392,17 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
   .search-box{min-width:0;flex:1 1 100%}
   .prod-count{margin-left:0;flex:1 1 100%}
   .prod-note{border-left:none;border-top:2px solid var(--red);padding:.8rem 0 0;max-width:none}
+  /* The 12 category chips wrapping at 1–2 per row was the actual complaint:
+     that alone pushed the whole grid off-screen on a phone. Scroll them in
+     one row instead, same fade-edge treatment as .partner-marquee. */
+  .chips{
+    flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.2rem;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 3%,#000 94%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 3%,#000 94%,transparent);
+  }
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;padding:.38rem .8rem;font-size:.6rem}
   .pgroup-head{flex-wrap:wrap;row-gap:.4rem}
   .pgroup-head::after{flex-basis:100%;height:1px}
   .grid{gap:.8rem}
