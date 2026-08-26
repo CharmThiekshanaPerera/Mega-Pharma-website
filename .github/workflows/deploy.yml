@@ -80,5 +80,6 @@ jobs:
             docker compose pull
             docker compose up -d
             docker compose exec -T app php artisan migrate --force
+            docker compose exec -T app php artisan db:seed --class=ProductSeeder --force
             docker image prune -f
           '
