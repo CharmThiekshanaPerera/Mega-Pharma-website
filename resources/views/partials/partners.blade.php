@@ -29,7 +29,7 @@
       ['n' => 'Tynor', 'logo' => 'images/partners/tynor.png'],
       ['n' => 'Connexicon', 'logo' => null],
       ['n' => 'Yasee QY Medical', 'logo' => 'images/partners/yasee-qy-medical.png'],
-      ['n' => 'Sky Nutraceuticals', 'logo' => null],
+      ['n' => 'Sky Nutraceuticals', 'logo' => 'images/partners/sky-nutraceuticals.jpg'],
     ];
   @endphp
   <div class="partner-marquee rv">
