@@ -378,6 +378,27 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .grid-empty{grid-column:1/-1;text-align:center;color:var(--muted);border:1px dashed var(--hair);border-radius:4px;padding:3.2rem 1rem;background:#fff}
 .grid-empty b{font-family:var(--serif);font-size:1.3rem;color:var(--ink);display:block;margin-bottom:.3rem;font-weight:500}
 
+/* Collections on narrow screens: the sticky controls bar and per-category
+   headers are tuned for wide rows and don't degrade cleanly on their own.
+   .pgroup-head in particular is a flex row with an unshrinkable text-width
+   floor (category name + house tag + count) racing a flex:1 divider line —
+   on a ~360px viewport a category like "Nutrition & Wellness" plus "Mega
+   Pharma" plus a count can overflow the line instead of wrapping. */
+@media (max-width:640px){
+  .prod-head{gap:1.2rem}
+  .prod-controls{padding:.8rem 0;gap:.7rem}
+  .prod-row{gap:.9rem}
+  .tabs{gap:.5rem 1.1rem}
+  .search-box{min-width:0;flex:1 1 100%}
+  .prod-count{margin-left:0;flex:1 1 100%}
+  .prod-note{border-left:none;border-top:2px solid var(--red);padding:.8rem 0 0;max-width:none}
+  .pgroup-head{flex-wrap:wrap;row-gap:.4rem}
+  .pgroup-head::after{flex-basis:100%;height:1px}
+  .grid{gap:.8rem}
+  .card{padding:1.1rem 1.1rem 1rem;min-height:0}
+  .card-img{width:calc(100% + 2.2rem);height:130px;margin:-1.1rem -1.1rem .3rem}
+}
+
 /* ============================================================
    8. STANDARDS + CONTACT + FOOTER
    ============================================================ */
