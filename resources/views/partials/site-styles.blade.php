@@ -395,7 +395,19 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
   .prod-head{gap:1.2rem}
   .prod-controls{padding:.8rem 0;gap:.7rem}
   .prod-row{gap:.9rem}
-  .tabs{gap:.5rem 1.1rem}
+  /* "All Houses / Mega Pharma / Mega Meditech" together measure ~370px —
+     just enough wider than a ~350px phone content-width that the third tab
+     wraps onto its own orphaned line. Same fix as .chips: scroll instead of
+     wrap, so it's correct at any width rather than relying on exact-fit
+     spacing that breaks again the next time a label changes. */
+  .tabs{
+    gap:.5rem 1.1rem;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 3%,#000 94%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 3%,#000 94%,transparent);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto}
   .search-box{min-width:0;flex:1 1 100%}
   .prod-count{margin-left:0;flex:1 1 100%}
   .prod-note{border-left:none;border-top:2px solid var(--red);padding:.8rem 0 0;max-width:none}
