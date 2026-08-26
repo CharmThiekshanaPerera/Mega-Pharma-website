@@ -84,7 +84,7 @@
   <a href="#contact">07<span class="rail-label"> — Contact</span></a>
 </nav>
 
-<a class="scroll-cue" id="scrollCue" href="#group">Scroll to discover</a>
+<a class="scroll-cue" id="scrollCue" href="#group"><span>Scroll to discover</span></a>
 
 <main id="main">
 

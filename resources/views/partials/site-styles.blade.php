@@ -143,6 +143,13 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .scroll-cue::after{content:"";width:1px;height:40px;background:linear-gradient(var(--red),transparent);animation:drip 2.4s ease-in-out infinite}
 @keyframes drip{0%{transform:scaleY(.15);transform-origin:top}55%{transform:scaleY(1)}100%{opacity:0;transform:scaleY(1)}}
 .scroll-cue.hide{opacity:0;pointer-events:none}
+/* The hero copy is tall enough, at common desktop viewport heights (~1000px
+   and under), to reach this fixed cue's row before the page has scrolled —
+   confirmed at 700–1000px viewport heights. Rather than chase an exact
+   height budget that breaks again the next time hero copy changes, give
+   the label its own small frosted pill so it stays legible over the pane
+   edge or the film either way. The drip tick stays free-floating below it. */
+.scroll-cue span{background:rgba(250,248,244,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(226,220,205,.75);border-radius:999px;padding:.5rem 1rem}
 
 /* ============================================================
    6. CHAPTERS — content glides over the world
