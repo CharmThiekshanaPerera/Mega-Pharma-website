@@ -177,6 +177,13 @@ h1 em{font-style:italic;color:var(--red)}
 h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .lede{color:#4d493f;max-width:56ch;margin-top:1.3rem;font-size:1.02rem}
 
+/* Every other chapter reads its copy through a frosted .pane over the film;
+   the Overture is the one chapter that floats text directly on the raw
+   WebGL/video scene with nothing behind it. A soft paper-toned halo keeps
+   the kicker/lede/entries legible over the scene's lighter, busier patches
+   without adding a visible panel — the cinematic look stays intact. */
+#heroCopy{text-shadow:0 1px 3px rgba(250,248,244,.9),0 3px 22px rgba(250,248,244,.75),0 1px 46px rgba(250,248,244,.5)}
+
 .kicker{
   font-size:.66rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);
   display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
