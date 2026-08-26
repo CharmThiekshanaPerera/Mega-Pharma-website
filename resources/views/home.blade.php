@@ -765,7 +765,7 @@ renderChips(); requestRender();
   /* ---------- CAMERA TIMELINE — one keyframe per chapter ---------- */
   /* film: index into films[] · dim: paper veil opacity · cap: protagonist pose */
   const KF=[
-    {film:0,dim:0,  cam:[0,0,10],    look:[0,0],   cap:[ 4.8,-.1, 2, 1.05]},   // 01 overture — pushed right, clear of the hero copy
+    {film:0,dim:0,  cam:[0,0,10],    look:[0,0],   cap:[ 6.0,-.1, 2, 1.05]},   // 01 overture — pushed further right now #heroCopy has a real visible panel (was clear of the old invisible-background copy at 4.8, but that box was always this wide — 4.8 now sits half-behind the panel's own edge)
     {film:3,dim:.06,cam:[-1.1,.35,9.6],look:[-.3,.1],cap:[-3.6, .7, 1,  .85]}, // 02 group / island
     {film:1,dim:.04,cam:[1.3,-.25,9.2],look:[.35,0], cap:[ 3.7, .3, .5, .98]}, // 03 pharma
     {film:2,dim:.04,cam:[-1.3,.25,9.2],look:[-.35,0],cap:[-3.7,-.3, .5, .98]}, // 04 meditech
