@@ -336,6 +336,7 @@
 </footer>
 
 @include('partials.legal-modal')
+@include('partials.chatbot')
 
 <script>
 /* ==========================================================

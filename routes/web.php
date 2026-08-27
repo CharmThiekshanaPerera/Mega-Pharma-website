@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as PublicProductController;
@@ -34,6 +35,12 @@ Route::get('/product-images/{filename}', function (string $filename) {
 Route::post('/contact', [ContactMessageController::class, 'store'])
     ->middleware('throttle:10,1')
     ->name('contact.store');
+
+// Rule-based assistant (see ChatbotService) — no external API, so this rate
+// limit exists purely to stop a scripted hammering, not to protect a quota.
+Route::post('/chat', [ChatbotController::class, 'respond'])
+    ->middleware('throttle:30,1')
+    ->name('chat.respond');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

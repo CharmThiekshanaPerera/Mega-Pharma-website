@@ -222,6 +222,7 @@
 </footer>
 
 @include('partials.legal-modal')
+@include('partials.chatbot')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>

@@ -598,6 +598,69 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .chapter--partners .eyebrow{justify-content:center}
 .chapter--partners .eyebrow::after{display:none}
 
+/* ============================================================
+   10. CHAT ASSISTANT — rule-based, see ChatbotService (no external API)
+   ============================================================ */
+.chat-widget{position:fixed;right:clamp(1rem,3vw,1.8rem);bottom:clamp(1rem,3vw,1.8rem);z-index:280}
+.chat-toggle{
+  width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;
+  display:grid;place-items:center;box-shadow:0 14px 30px -12px rgba(181,18,27,.55);
+  transition:transform .3s var(--ease),box-shadow .3s;position:relative;
+}
+.chat-toggle:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 18px 36px -12px rgba(181,18,27,.6)}
+.chat-toggle-icon-close{display:none}
+.chat-widget.open .chat-toggle-icon-open{display:none}
+.chat-widget.open .chat-toggle-icon-close{display:block}
+
+.chat-panel{
+  position:absolute;right:0;bottom:calc(100% + .9rem);width:min(370px,calc(100vw - 2rem));
+  max-height:min(560px,calc(100vh - 140px));display:flex;flex-direction:column;
+  background:rgba(250,248,244,.97);backdrop-filter:blur(16px) saturate(1.05);-webkit-backdrop-filter:blur(16px) saturate(1.05);
+  border:1px solid var(--hair);border-radius:10px;box-shadow:0 30px 70px -30px rgba(19,26,46,.4);
+  overflow:hidden;animation:chatPop .3s var(--ease);
+}
+@keyframes chatPop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.chat-panel{animation:none}}
+
+.chat-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;padding:1.1rem 1.2rem;border-bottom:1px solid var(--hair);background:var(--paper-2)}
+.chat-panel-head strong{font-family:var(--serif);font-size:1.05rem;font-weight:600;display:block}
+.chat-panel-head span{display:block;font-size:.68rem;color:var(--muted);margin-top:.15rem}
+.chat-close{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--muted);flex:none;transition:background .25s,color .25s}
+.chat-close:hover{background:var(--hair);color:var(--ink)}
+
+.chat-messages{flex:1;overflow-y:auto;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.chat-msg p{font-size:.86rem;line-height:1.55;padding:.65rem .85rem;border-radius:10px;max-width:88%}
+.chat-msg--bot{align-self:flex-start}
+.chat-msg--bot p{background:#fff;border:1px solid var(--hair);border-bottom-left-radius:3px}
+.chat-msg--user{align-self:flex-end}
+.chat-msg--user p{background:var(--ink);color:#fff;border-bottom-right-radius:3px;margin-left:auto}
+
+.chat-typing{display:flex;gap:.3rem;align-items:center;padding:.75rem .85rem!important}
+.chat-typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);display:block;animation:chatTyping 1.1s ease-in-out infinite}
+.chat-typing i:nth-child(2){animation-delay:.15s}
+.chat-typing i:nth-child(3){animation-delay:.3s}
+@keyframes chatTyping{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+.chat-products{display:flex;flex-direction:column;gap:.4rem;margin-top:.55rem;max-width:88%}
+.chat-product{display:block;background:#fff;border:1px solid var(--hair);border-radius:6px;padding:.55rem .7rem;text-decoration:none;transition:border-color .25s,transform .25s}
+.chat-product:hover{border-color:var(--red);transform:translateX(2px)}
+.chat-product-name{display:block;font-size:.8rem;font-weight:600;color:var(--ink)}
+.chat-product-meta{display:block;font-size:.68rem;color:var(--muted);margin-top:.1rem}
+
+.chat-form{display:flex;gap:.5rem;padding:.9rem;border-top:1px solid var(--hair);background:var(--paper-2)}
+.chat-form input{flex:1;background:#fff;border:1px solid var(--hair);border-radius:8px;padding:.6rem .8rem;font:inherit;font-size:.86rem;color:var(--ink)}
+.chat-form input:focus{outline:none;border-color:var(--red)}
+.chat-form button{width:38px;height:38px;border-radius:8px;background:var(--red);color:#fff;display:grid;place-items:center;flex:none;transition:transform .2s}
+.chat-form button:hover{transform:scale(1.05)}
+
+@media (max-width:480px){
+  /* position:fixed here (not absolute) so left/right can span the viewport
+     rather than being relative to the small toggle button's own box; bottom
+     is a plain offset (button height + gap) since percentages would resolve
+     against the viewport once the containing block changes. */
+  .chat-panel{position:fixed;left:.6rem;right:.6rem;bottom:84px;width:auto;max-height:min(70vh,560px)}
+}
+
 /* reduced motion: calm editorial page, world becomes still */
 @media (prefers-reduced-motion:reduce){
   .scroll-cue{display:none}
