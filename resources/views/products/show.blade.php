@@ -36,6 +36,7 @@
 <header class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="/" aria-label="Mega Pharma Group — home">
+      <img class="brand-logo" src="{{ asset('images/logo-mark.webp') }}" alt="" aria-hidden="true" width="26" height="38" loading="eager" decoding="async">
       <b>Mega Pharma</b><span>Group</span>
     </a>
     <nav aria-label="Primary">
@@ -58,7 +59,7 @@
   <div class="wrap chapter-inner">
     @php $details = $product->details; @endphp
 
-    <div class="pane pane--c"@if ($product->imageUrl) style="display:flex;flex-wrap:wrap;gap:2.8rem;align-items:flex-start" @endif>
+    <div class="pane pane--c"@if ($product->imageUrl) style="display:flex;flex-direction:column;align-items:center;gap:1.8rem" @endif>
       @if ($product->imageUrl)
         <div class="product-hero-media">
           <img src="{{ $product->imageUrl }}" alt="{{ $product->name }}" loading="eager" decoding="async">
@@ -70,7 +71,7 @@
           @endif
         </div>
       @endif
-      <div style="flex:1 1 320px;min-width:0">
+      <div class="product-hero-details">
         <p class="eyebrow"><i>&larr;</i><a class="lnk" href="/#collections">Back to the collection</a></p>
         <span class="modal-co {{ $product->company }}">{{ $product->companyLabel }}</span>
         <h1 id="product-h" style="margin-top:.6rem">{{ $product->name }}</h1>

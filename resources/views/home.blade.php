@@ -22,7 +22,7 @@
      Films & textures were generated with Higgsfield (Cinema Studio
      Video 3.0 · Nano Banana Pro). URLs in the ASSETS block below.
      Contact form + legal/pharmacovigilance pages are now implemented in-page.
-     Remaining owner TODOs: TODO(logo) TODO(brand) TODO(assets)
+     Remaining owner TODOs: TODO(brand) TODO(assets)
      TODO(assets): re-host Higgsfield URLs on your own CDN before
      production — generated asset URLs are not a permanent host.
      ================================================================== -->
@@ -55,8 +55,8 @@
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <!-- TODO(logo): replace wordmark with official logo image -->
     <a class="brand" href="#top" aria-label="Mega Pharma Group — home">
+      <img class="brand-logo" src="{{ asset('images/logo-mark.webp') }}" alt="" aria-hidden="true" width="26" height="38" loading="eager" decoding="async">
       <b>Mega Pharma</b><span>Group</span>
     </a>
     <nav aria-label="Primary">

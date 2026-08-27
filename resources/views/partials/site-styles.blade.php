@@ -83,10 +83,15 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .nav{position:fixed;inset:0 0 auto 0;z-index:250;border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
 .nav.scrolled{background:rgba(250,248,244,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--hair)}
 .nav-inner{max-width:var(--wrap);margin:0 auto;padding:1.05rem clamp(1.2rem,4.5vw,3rem);display:flex;align-items:center;justify-content:space-between;gap:1rem}
-/* TODO(logo): replace wordmark with the official logo image */
 .brand{font-family:var(--serif);font-size:1.28rem;text-decoration:none;display:flex;align-items:baseline;gap:.55rem}
 .brand b{font-weight:600}
 .brand span{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
+/* the official emblem — a proper matted cutout (transparent PNG/WebP
+   exported from the same source used for the 3D protagonist), not the
+   flat CloudFront render used in the footer, which still carries its
+   grey studio backdrop and would show as a box on the nav's paper bg */
+.brand-logo{height:38px;width:auto;display:block;align-self:center}
+@media (max-width:900px){.brand-logo{height:32px}}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
 .nav-links a{font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
 .nav-cta{color:var(--red)!important}
@@ -546,8 +551,13 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .modal-note{margin-top:1.1rem;font-size:.7rem;color:var(--muted)}
 
 /* ---------- brochure-style product sections ---------- */
-.product-hero-media{flex:0 0 340px;max-width:100%}
+/* Centered stack (image, then details), matching the collection card's own
+   image-on-top layout — was a flex row with a fixed 340px image column,
+   which needed ~705px to sit side-by-side and forced an off-centre wrap
+   well before the pane's own padding left that much room. */
+.product-hero-media{width:100%;max-width:420px;margin:0 auto}
 .product-hero-media img{width:100%;border-radius:6px;background:var(--paper-2);display:block}
+.product-hero-details{width:100%}
 .product-hero-award{display:flex;align-items:center;gap:.8rem;margin-top:1.1rem;padding:.8rem 1rem;background:#fff;border:1px solid var(--hair);border-radius:4px}
 .product-hero-award img{width:44px;height:44px;object-fit:contain;border-radius:0;background:none}
 .product-hero-award strong{display:block;font-size:.72rem;font-weight:600;line-height:1.3}
@@ -575,7 +585,6 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .brochure-spec-table th{color:var(--muted);width:46%}
 .brochure-spec-table td{color:var(--ink)}
 @media (max-width:600px){
-  .product-hero-media{flex-basis:100%}
   .product-hero-award{flex-wrap:wrap}
   .brochure-spec-table,.brochure-spec-table tbody,.brochure-spec-table tr{display:block}
   .brochure-spec-table tr{padding:.6rem 0;border-bottom:1px solid var(--hair)}
