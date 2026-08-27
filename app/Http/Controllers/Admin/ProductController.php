@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -119,9 +120,21 @@ class ProductController extends Controller
 
     /**
      * Handles the uploaded file / removal checkbox and writes $data['image_path']
-     * accordingly. Images live directly in public/images/products/ (not the
-     * storage/ disk — that's how the public site's asset() calls expect them),
-     * named after the product's slug so repeated uploads replace cleanly.
+     * accordingly.
+     *
+     * This deliberately does NOT write into public/images/products/ (where the
+     * deploy-time catalogue photos live). nginx and the app container are
+     * separate images with no shared filesystem — nginx serves a static copy
+     * of public/ baked in at build time, so anything the app container wrote
+     * to its own public/ at runtime would be invisible to real visitors and
+     * wiped on the next deploy anyway. The one thing that IS a persistent,
+     * shared volume across app/queue container recreations is storage/ (see
+     * docker-compose.yml's storage_data volume), so uploads go through the
+     * 'public' filesystem disk (storage/app/public) and are served back out
+     * via the product-images.show route in routes/web.php — nginx's
+     * `try_files … /index.php` already falls through to Laravel for any path
+     * it doesn't recognise as a static file, so no nginx/compose changes are
+     * needed for this to work.
      */
     private function applyImage(Request $request, Product $product, array &$data): void
     {
@@ -139,7 +152,7 @@ class ProductController extends Controller
         $file = $request->file('image');
         $slug = $product->exists ? $product->slug : $data['slug'];
         $filename = $slug.'.'.$file->extension();
-        $newPath = "images/products/{$filename}";
+        $newPath = "product-images/{$filename}";
 
         // Clean up the old file if this upload replaces it under a different
         // name (e.g. the previous image was a .jpg and this one's a .png).
@@ -147,20 +160,25 @@ class ProductController extends Controller
             $this->deleteImageFile($product->image_path);
         }
 
-        $file->move(public_path('images/products'), $filename);
+        Storage::disk('public')->putFileAs('products', $file, $filename);
         $data['image_path'] = $newPath;
     }
 
-    /** Never deletes outside public/images/products/, however image_path got set. */
     private function deleteImageFile(?string $path): void
     {
-        if (! $path || ! str_starts_with($path, 'images/products/')) {
+        if (! $path) {
             return;
         }
 
-        $full = public_path($path);
-        if (is_file($full)) {
-            @unlink($full);
+        if (str_starts_with($path, 'product-images/')) {
+            Storage::disk('public')->delete('products/'.substr($path, strlen('product-images/')));
         }
+
+        // Legacy images/products/* paths (the deploy-time catalogue photos,
+        // baked into the repo and shipped in every image build) are left
+        // alone: deleting from the currently-running app container's public/
+        // wouldn't remove them from what nginx actually serves, and they'd
+        // reappear on the next deploy regardless. Clearing image_path (done
+        // by the caller) is what actually removes them from the site.
     }
 }

@@ -8,10 +8,28 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController as PublicProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/products/{product:slug}', [PublicProductController::class, 'show'])->name('products.show');
+
+// Admin-uploaded product photos (see Admin\ProductController::applyImage) live
+// on the storage/ volume, not public/ — nginx's static file root is a
+// separate, build-time-baked image with no visibility into that volume, so
+// these are served through Laravel instead. nginx's `try_files … /index.php`
+// already falls through here for any path it doesn't recognise as a static
+// file, so this needs no nginx/compose changes to work. Filename is
+// constrained to a safe charset (no `/`), so no path-traversal concern.
+Route::get('/product-images/{filename}', function (string $filename) {
+    $disk = Storage::disk('public');
+    $path = "products/{$filename}";
+    abort_unless($disk->exists($path), 404);
+
+    return response()->file($disk->path($path), [
+        'Cache-Control' => 'public, max-age=31536000, immutable',
+    ]);
+})->where('filename', '[A-Za-z0-9._-]+')->name('product-images.show');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])
     ->middleware('throttle:10,1')
