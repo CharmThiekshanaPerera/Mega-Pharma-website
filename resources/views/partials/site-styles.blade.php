@@ -619,6 +619,12 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
   border:1px solid var(--hair);border-radius:10px;box-shadow:0 30px 70px -30px rgba(19,26,46,.4);
   overflow:hidden;animation:chatPop .3s var(--ease);
 }
+/* The panel's own `display:flex` above has equal specificity to the
+   browser's default `[hidden]{display:none}` UA-stylesheet rule, and an
+   author stylesheet always wins that tie — so without this, toggling the
+   `hidden` attribute did nothing and the panel rendered open on every page
+   load regardless of JS state. */
+.chat-panel[hidden]{display:none}
 @keyframes chatPop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.chat-panel{animation:none}}
 
