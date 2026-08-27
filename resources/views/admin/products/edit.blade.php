@@ -10,7 +10,7 @@
                 <a href="{{ route('products.show', $product) }}" target="_blank" class="text-red-700 hover:underline">{{ route('products.show', $product) }}</a>
             </p>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <form method="POST" action="{{ route('admin.products.update', $product) }}" class="space-y-6">
+                <form method="POST" action="{{ route('admin.products.update', $product) }}" class="space-y-6" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     @include('admin.products._form')

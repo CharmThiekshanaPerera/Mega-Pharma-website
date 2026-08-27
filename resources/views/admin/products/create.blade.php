@@ -6,7 +6,7 @@
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <form method="POST" action="{{ route('admin.products.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('admin.products.store') }}" class="space-y-6" enctype="multipart/form-data">
                     @csrf
                     @include('admin.products._form')
 
