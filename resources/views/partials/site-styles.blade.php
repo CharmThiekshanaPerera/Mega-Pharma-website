@@ -353,7 +353,9 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch}
 .pgroup-head .g-co.pharma{color:var(--red)}
 .pgroup-head .g-co.meditech{color:var(--navy)}
 .pgroup-head .g-count{font-size:.68rem;color:var(--muted);letter-spacing:.1em}
-.pgroup-head::after{content:"";flex:1;height:1px;background:var(--hair);align-self:center}
+.pgroup-head::after{content:"";flex:1;height:1px;background:var(--hair);align-self:center;order:5}
+.pgroup-head .g-link{order:6;font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+a.chip{text-decoration:none;display:inline-block}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:1rem}
 @keyframes cardin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}

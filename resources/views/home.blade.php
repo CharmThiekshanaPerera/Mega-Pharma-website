@@ -347,6 +347,7 @@
            co=company, cat=category, mfr=principal, d=description
    ========================================================== */
 const PRODUCTS = @json($products);
+const COLLECTION_URLS = @json(collect(config('collections'))->mapWithKeys(fn ($c, $slug) => [$c['name'] => route('collections.show', $slug)]));
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -586,7 +587,7 @@ function renderGrid(){
       const group=items.filter(p=>p.co===co&&p.cat===cat).sort((a,b)=>a.n.localeCompare(b.n));
       if(!group.length) return;
       html+='<section class="pgroup" aria-label="'+cat+' — '+coLabel(co)+'">';
-      html+='<div class="pgroup-head"><h3>'+cat+'</h3><span class="g-co '+co+'">'+coLabel(co)+'</span><span class="g-count">'+group.length+(group.length>1?" products":" product")+'</span></div>';
+      html+='<div class="pgroup-head"><h3>'+cat+'</h3><span class="g-co '+co+'">'+coLabel(co)+'</span><span class="g-count">'+group.length+(group.length>1?" products":" product")+'</span>'+(COLLECTION_URLS[cat]?'<a class="g-link lnk" href="'+COLLECTION_URLS[cat]+'">View collection &rarr;</a>':'')+'</div>';
       html+='<div class="grid">';
       group.forEach((p,i)=>{ html+=cardHTML(p,PRODUCTS.indexOf(p),i); });
       html+="</div></section>";
