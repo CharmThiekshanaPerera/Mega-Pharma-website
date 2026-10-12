@@ -113,6 +113,87 @@
   </div>
 </section>
 
+<!-- ============ GROUP COMPANIES — logo slideshow ============
+     Sits between the Overture and The Group, same as the Partners
+     marquee further down: no data-scene / not in chapterIds, so the
+     scroll-driven camera (home.blade.php's KF/SEG machinery) never sees
+     it — it just interpolates scene 0 → 1 over a slightly longer
+     scroll distance. Nothing about that system needed to change. -->
+<section class="chapter chapter--group-companies" aria-labelledby="group-companies-h">
+  <div class="wrap chapter-inner">
+    <!-- Unlike the Partners section below (which sits past the camera's rest
+         position), this one is mid-transition between scene 0 and scene 1,
+         so the floating 3D emblem can pass right behind this heading — give
+         it a real frosted backdrop (the default .pane treatment) rather than
+         the Partners section's fully-transparent one, same fix as the hero
+         panel earlier. -->
+    <div class="pane pane--c rv" style="text-align:center">
+      <p class="eyebrow" style="justify-content:center"><i>&middot;</i>Part of the Mega Group</p>
+      <h2 id="group-companies-h">A family of Sri Lankan enterprises.</h2>
+    </div>
+
+    @php
+      $groupCompanies = [
+        ['n' => 'Mega Pharma', 'logo' => 'images/group/mega-pharma.png'],
+        ['n' => 'Mega Meditech', 'logo' => 'images/group/mega-meditech.png'],
+        ['n' => 'Mega Trading', 'logo' => 'images/group/mega-trading.png'],
+        ['n' => 'Mega Vintage', 'logo' => 'images/group/mega-vintage.png'],
+        ['n' => 'Mega Plantations', 'logo' => 'images/group/mega-plantations.png'],
+        ['n' => 'Mega Eco Wheels', 'logo' => 'images/group/mega-eco-wheels.png'],
+        ['n' => 'MicroMega', 'logo' => 'images/group/micromega.png'],
+        ['n' => 'Austin House Aesthetic Centre', 'logo' => 'images/group/austin-house.png'],
+        ['n' => 'Euro Pharma', 'logo' => 'images/group/euro-pharma.png'],
+        ['n' => 'Cosmotech', 'logo' => 'images/group/cosmotech.jpg'],
+        ['n' => 'Weather Shield', 'logo' => 'images/group/weather-shield.png'],
+      ];
+    @endphp
+
+    <div class="group-slideshow rv" id="groupSlideshow" role="region" aria-roledescription="carousel" aria-label="Mega Group companies">
+      <div class="group-slide-stage">
+        @foreach ($groupCompanies as $i => $c)
+          <figure class="group-slide{{ $i === 0 ? ' is-active' : '' }}">
+            <span class="group-slide-tile"><img src="{{ asset($c['logo']) }}" alt="{{ $c['n'] }}" loading="lazy" decoding="async"></span>
+            <figcaption>{{ $c['n'] }}</figcaption>
+          </figure>
+        @endforeach
+      </div>
+      <div class="group-slide-dots" role="tablist" aria-label="Choose a company">
+        @foreach ($groupCompanies as $i => $c)
+          <button type="button" role="tab" aria-selected="{{ $i === 0 ? 'true' : 'false' }}" aria-label="{{ $c['n'] }}"></button>
+        @endforeach
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById("groupSlideshow");
+  if (!root) return;
+  var slides = [].slice.call(root.querySelectorAll(".group-slide"));
+  var dots = [].slice.call(root.querySelectorAll(".group-slide-dots button"));
+  var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var i = 0, timer = null;
+
+  function show(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function(s, idx){ s.classList.toggle("is-active", idx === i); });
+    dots.forEach(function(d, idx){ d.setAttribute("aria-selected", String(idx === i)); });
+  }
+  function next(){ show(i + 1); }
+  function start(){ if (!reduceMotion && !timer) timer = setInterval(next, 3800); }
+  function stop(){ clearInterval(timer); timer = null; }
+
+  dots.forEach(function(d, idx){ d.addEventListener("click", function(){ show(idx); stop(); start(); }); });
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  root.addEventListener("focusin", stop);
+  root.addEventListener("focusout", start);
+
+  start();
+})();
+</script>
+
 <!-- ============ 02 · THE GROUP ============ -->
 <section class="chapter" id="group" data-scene="1" aria-labelledby="group-h">
   <div class="wrap chapter-inner">
