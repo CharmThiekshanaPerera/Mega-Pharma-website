@@ -600,27 +600,28 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .chapter--partners .eyebrow{justify-content:center}
 .chapter--partners .eyebrow::after{display:none}
 
-/* ---------- group companies slideshow (between Overture and The Group) ---------- */
+/* ---------- group companies marquee (between Overture and The Group) ----------
+   Same continuous-scroll technique as .partner-marquee below: the track
+   holds the list twice and animates from -50% to 0, which loops seamlessly
+   and reads left-to-right (new logos enter from the left edge). */
 .chapter--group-companies{min-height:0;padding:6rem 0 5rem;display:block;position:relative;z-index:11}
 .chapter--group-companies .eyebrow::after{display:none}
-.group-slideshow{margin:2.6rem auto 0;max-width:420px;text-align:center}
-.group-slide-stage{position:relative;height:230px}
-.group-slide{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
-  opacity:0;transition:opacity .7s var(--ease);pointer-events:none;
-}
-.group-slide.is-active{opacity:1;pointer-events:auto}
 .group-slide-tile{
-  width:220px;height:140px;background:#fff;border:1px solid var(--hair);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;padding:1.1rem;box-shadow:0 20px 44px -26px rgba(19,26,46,.3);
+  width:168px;height:104px;background:#fff;border:1px solid var(--hair);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;padding:.9rem;box-shadow:0 16px 36px -24px rgba(19,26,46,.3);
+  flex:none;
 }
 .group-slide-tile img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-.group-slide figcaption{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.group-slide-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.6rem}
-.group-slide-dots button{width:7px;height:7px;border-radius:50%;background:var(--hair);transition:background .3s,transform .3s}
-.group-slide-dots button[aria-selected="true"]{background:var(--red);transform:scale(1.3)}
-.group-slide-dots button:hover{background:var(--muted)}
-@media (prefers-reduced-motion:reduce){.group-slide{transition:none}}
+.group-marquee{margin-top:2.8rem;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.group-marquee-track{display:flex;width:max-content;animation:group-marquee-scroll 32s linear infinite}
+.group-marquee:hover .group-marquee-track{animation-play-state:paused}
+.group-marquee-list{display:flex;align-items:center;list-style:none}
+.group-marquee-list li{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:0 1.3rem}
+.group-marquee-name{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;transition:color .35s}
+.group-marquee-list li:hover .group-marquee-name{color:var(--ink)}
+.group-marquee-list li:hover .group-slide-tile{transform:scale(1.04)}
+@keyframes group-marquee-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media (prefers-reduced-motion:reduce){.group-marquee-track{animation:none}}
 
 /* ============================================================
    10. CHAT ASSISTANT — rule-based, see ChatbotService (no external API)

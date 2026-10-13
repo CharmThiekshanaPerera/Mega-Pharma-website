@@ -148,51 +148,25 @@
       ];
     @endphp
 
-    <div class="group-slideshow rv" id="groupSlideshow" role="region" aria-roledescription="carousel" aria-label="Mega Group companies">
-      <div class="group-slide-stage">
-        @foreach ($groupCompanies as $i => $c)
-          <figure class="group-slide{{ $i === 0 ? ' is-active' : '' }}">
-            <span class="group-slide-tile"><img src="{{ asset($c['logo']) }}" alt="{{ $c['n'] }}" loading="lazy" decoding="async"></span>
-            <figcaption>{{ $c['n'] }}</figcaption>
-          </figure>
-        @endforeach
-      </div>
-      <div class="group-slide-dots" role="tablist" aria-label="Choose a company">
-        @foreach ($groupCompanies as $i => $c)
-          <button type="button" role="tab" aria-selected="{{ $i === 0 ? 'true' : 'false' }}" aria-label="{{ $c['n'] }}"></button>
-        @endforeach
+    <!-- Continuous left-to-right marquee, all logos visible at once — same
+         technique as the Partners marquee below (duplicate the list once,
+         animate the doubled track so it loops seamlessly). -->
+    <div class="group-marquee rv">
+      <div class="group-marquee-track">
+        @for ($i = 0; $i < 2; $i++)
+          <ul class="group-marquee-list"@if($i === 1) aria-hidden="true" @else aria-label="Mega Group companies" @endif>
+            @foreach ($groupCompanies as $c)
+              <li>
+                <span class="group-slide-tile"><img src="{{ asset($c['logo']) }}" alt="{{ $c['n'] }}" loading="lazy" decoding="async"></span>
+                <span class="group-marquee-name">{{ $c['n'] }}</span>
+              </li>
+            @endforeach
+          </ul>
+        @endfor
       </div>
     </div>
   </div>
 </section>
-<script>
-(function(){
-  "use strict";
-  var root = document.getElementById("groupSlideshow");
-  if (!root) return;
-  var slides = [].slice.call(root.querySelectorAll(".group-slide"));
-  var dots = [].slice.call(root.querySelectorAll(".group-slide-dots button"));
-  var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var i = 0, timer = null;
-
-  function show(n){
-    i = (n + slides.length) % slides.length;
-    slides.forEach(function(s, idx){ s.classList.toggle("is-active", idx === i); });
-    dots.forEach(function(d, idx){ d.setAttribute("aria-selected", String(idx === i)); });
-  }
-  function next(){ show(i + 1); }
-  function start(){ if (!reduceMotion && !timer) timer = setInterval(next, 3800); }
-  function stop(){ clearInterval(timer); timer = null; }
-
-  dots.forEach(function(d, idx){ d.addEventListener("click", function(){ show(idx); stop(); start(); }); });
-  root.addEventListener("mouseenter", stop);
-  root.addEventListener("mouseleave", start);
-  root.addEventListener("focusin", stop);
-  root.addEventListener("focusout", start);
-
-  start();
-})();
-</script>
 
 <!-- ============ 02 · THE GROUP ============ -->
 <section class="chapter" id="group" data-scene="1" aria-labelledby="group-h">
