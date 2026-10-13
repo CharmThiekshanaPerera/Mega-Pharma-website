@@ -603,23 +603,22 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 /* ---------- group companies marquee (between Overture and The Group) ----------
    Same continuous-scroll technique as .partner-marquee below: the track
    holds the list twice and animates from -50% to 0, which loops seamlessly
-   and reads left-to-right (new logos enter from the left edge). */
-.chapter--group-companies{min-height:0;padding:6rem 0 5rem;display:block;position:relative;z-index:11}
-.chapter--group-companies .eyebrow::after{display:none}
-.group-slide-tile{
-  width:168px;height:104px;background:#fff;border:1px solid var(--hair);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;padding:.9rem;box-shadow:0 16px 36px -24px rgba(19,26,46,.3);
-  flex:none;
-}
-.group-slide-tile img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-.group-marquee{margin-top:2.8rem;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+   and reads left-to-right (new logos enter from the left edge). No heading,
+   no caption, no card — just the logos at their own native backgrounds
+   (several are genuinely transparent; a few carry a colour or photo
+   background baked into the source file itself, e.g. MicroMega's red and
+   Cosmotech's black — that's the logo's own art, not something CSS is
+   adding, so it isn't something a background:transparent rule can remove). */
+.chapter--group-companies{min-height:0;padding:3.5rem 0;display:block;position:relative;z-index:11}
+.group-slide-tile{display:flex;align-items:center;justify-content:center;background:transparent;flex:none}
+.group-slide-tile img{height:72px;width:auto;max-width:220px;object-fit:contain;display:block}
+.group-marquee{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
 .group-marquee-track{display:flex;width:max-content;animation:group-marquee-scroll 32s linear infinite}
 .group-marquee:hover .group-marquee-track{animation-play-state:paused}
 .group-marquee-list{display:flex;align-items:center;list-style:none}
-.group-marquee-list li{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:0 1.3rem}
-.group-marquee-name{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;transition:color .35s}
-.group-marquee-list li:hover .group-marquee-name{color:var(--ink)}
-.group-marquee-list li:hover .group-slide-tile{transform:scale(1.04)}
+.group-marquee-list li{display:flex;align-items:center;padding:0 1.6rem}
+.group-marquee-list li:hover .group-slide-tile img{transform:scale(1.06)}
+.group-slide-tile img{transition:transform .35s var(--ease)}
 @keyframes group-marquee-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @media (prefers-reduced-motion:reduce){.group-marquee-track{animation:none}}
 

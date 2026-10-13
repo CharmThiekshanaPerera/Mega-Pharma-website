@@ -119,19 +119,8 @@
      scroll-driven camera (home.blade.php's KF/SEG machinery) never sees
      it — it just interpolates scene 0 → 1 over a slightly longer
      scroll distance. Nothing about that system needed to change. -->
-<section class="chapter chapter--group-companies" aria-labelledby="group-companies-h">
+<section class="chapter chapter--group-companies" aria-label="Part of the Mega Group">
   <div class="wrap chapter-inner">
-    <!-- Unlike the Partners section below (which sits past the camera's rest
-         position), this one is mid-transition between scene 0 and scene 1,
-         so the floating 3D emblem can pass right behind this heading — give
-         it a real frosted backdrop (the default .pane treatment) rather than
-         the Partners section's fully-transparent one, same fix as the hero
-         panel earlier. -->
-    <div class="pane pane--c rv" style="text-align:center">
-      <p class="eyebrow" style="justify-content:center"><i>&middot;</i>Part of the Mega Group</p>
-      <h2 id="group-companies-h">A family of Sri Lankan enterprises.</h2>
-    </div>
-
     @php
       $groupCompanies = [
         ['n' => 'Mega Pharma', 'logo' => 'images/group/mega-pharma.png'],
@@ -158,7 +147,6 @@
             @foreach ($groupCompanies as $c)
               <li>
                 <span class="group-slide-tile"><img src="{{ asset($c['logo']) }}" alt="{{ $c['n'] }}" loading="lazy" decoding="async"></span>
-                <span class="group-marquee-name">{{ $c['n'] }}</span>
               </li>
             @endforeach
           </ul>
