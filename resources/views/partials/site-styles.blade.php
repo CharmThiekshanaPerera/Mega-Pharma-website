@@ -611,7 +611,7 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
    adding, so it isn't something a background:transparent rule can remove). */
 .chapter--group-companies{min-height:0;padding:3.5rem 0;display:block;position:relative;z-index:11}
 .group-slide-tile{display:flex;align-items:center;justify-content:center;background:transparent;flex:none}
-.group-slide-tile img{height:72px;width:auto;max-width:220px;object-fit:contain;display:block}
+.group-slide-tile img{height:140px;width:auto;max-width:360px;object-fit:contain;display:block}
 .group-marquee{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
 .group-marquee-track{display:flex;width:max-content;animation:group-marquee-scroll 32s linear infinite}
 .group-marquee:hover .group-marquee-track{animation-play-state:paused}
@@ -621,6 +621,10 @@ footer{position:relative;z-index:10;background:var(--navy-deep);color:#e9ecf5;pa
 .group-slide-tile img{transition:transform .35s var(--ease)}
 @keyframes group-marquee-scroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @media (prefers-reduced-motion:reduce){.group-marquee-track{animation:none}}
+@media (max-width:640px){
+  .group-slide-tile img{height:88px;max-width:220px}
+  .group-marquee-list li{padding:0 1.1rem}
+}
 
 /* ============================================================
    10. CHAT ASSISTANT — rule-based, see ChatbotService (no external API)
